@@ -1,42 +1,40 @@
 #include "main.h"
-#include <stdio.h>
 #include <stdlib.h>
 /**
- * str_concat - Main Entry
- * @s1: input
- * @s2: input
+ * _strdup - Main Entry
+ * @str: input
  * Return: 0
  */
-char *str_concat(char *s1, char *s2)
+char *_strdup(char *str)
 {
-	unsigned int size1 = 0, size2 = 0;
-	char *ptr, *ret;
+	char *nstr;
+	unsigned int len, i;
 
-	ptr = s1;
-	if (s1)
-		while (*ptr++)
-			size1++;
-	else
-		s1 = "";
-
-	ptr = s2;
-	if (s2)
-		while (*ptr++)
-
-			size2++;
-	else
-		s2 = "";
-
-	ret = malloc(size1 + size2 + 1);
-	if (!ret)
+	/* check is str is null */
+	if (str == NULL)
+	{
 		return (NULL);
 
-	ptr = ret;
-	while (*s1)
-		*ptr++ = *s1++;
-	while (*s2)
-		*ptr++ = *s2++;
-	*ptr = 0;
+	}
 
-	return (ret);
+	len = 0;
+	while (str[len] != '\0')
+	{
+		len++;
+	}
+
+	nstr = malloc(sizeof(char) * (len + 1));
+
+	/*check if malloc was successful*/
+	if (nstr == NULL)
+	{
+		return (NULL);
+	}
+
+	for (i = 0; i < len; i++)
+	{
+		nstr[i] = str[i];
+	}
+	nstr[len] = '\0';
+	return (nstr);
 }
